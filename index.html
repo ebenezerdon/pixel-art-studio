@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pixel Art Studio — Create retro art with layers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="styles/main.css">
+  <style type="text/tailwindcss" data-teda="tailwind-apply">
+    @layer components {
+      .btn-primary { @apply inline-flex items-center justify-center gap-2 text-white px-4 py-2 rounded-lg shadow-md focus:outline-none; background-color: var(--accent-primary); }
+      .btn-primary:hover { background-color: var(--accent-primary-dark); }
+      .btn-primary:focus { box-shadow: 0 0 0 6px var(--accent-primary-ring); }
+      .btn-secondary { @apply inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-800 px-3 py-2 rounded-md hover:bg-gray-50 focus:outline-none; border-color: rgba(0,0,0,0.06); }
+      .chip { @apply inline-flex items-center px-3 py-1 rounded-full text-sm; background-color: var(--accent-warm-muted); color: var(--accent-warm-dark); }
+    }
+  </style>
+</head>
+<body class="antialiased text-slate-800 bg-gradient-to-b from-white via-slate-50 to-white min-h-screen">
+  <header class="max-w-7xl mx-auto p-6 sm:p-10">
+    <nav class="flex items-center justify-between" aria-label="Main navigation">
+      <a href="index.html" class="flex items-center gap-3">
+        <svg width="36" height="36" viewBox="0 0 64 64" fill="none" aria-hidden="true" class="shadow-sm rounded-md">
+          <!-- Background rounded tile -->
+          <rect width="64" height="64" rx="12" fill="var(--accent-warm)"></rect>
+          <!-- Pixel grid motif (9 tiles) that borrows theme colors -->
+          <g transform="translate(12,12)">
+            <rect x="0" y="0" width="12" height="12" rx="2" fill="var(--accent-primary)"></rect>
+            <rect x="16" y="0" width="12" height="12" rx="2" fill="var(--accent-primary-dark)"></rect>
+            <rect x="32" y="0" width="12" height="12" rx="2" fill="var(--muted)"></rect>
+
+            <rect x="0" y="16" width="12" height="12" rx="2" fill="var(--accent-secondary)"></rect>
+            <rect x="16" y="16" width="12" height="12" rx="2" fill="transparent" stroke="var(--accent-primary)" stroke-width="1"></rect>
+            <rect x="32" y="16" width="12" height="12" rx="2" fill="var(--accent-primary)"></rect>
+
+            <rect x="0" y="32" width="12" height="12" rx="2" fill="var(--accent-warm-dark)"></rect>
+            <rect x="16" y="32" width="12" height="12" rx="2" fill="var(--accent-primary)"></rect>
+            <rect x="32" y="32" width="12" height="12" rx="2" fill="var(--accent-secondary)"></rect>
+          </g>
+        </svg>
+        <span class="font-semibold text-lg">Pixel Art Studio</span>
+      </a>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="app.html" class="btn-primary">Open Editor</a>
+        <a href="#features" class="btn-secondary">Features</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 pb-16">
+    <!-- Asymmetric hero: large left card offset and narrow right info column -->
+    <section class="relative flex flex-col md:flex-row items-stretch gap-8">
+      <div class="md:w-3/4 lg:w-4/5">
+        <div class="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-8 md:p-12" style="transform: translateY(-12px);">
+          <div class="absolute -left-10 -top-10 w-52 h-52 rounded-lg transform rotate-12" style="background-color:var(--accent-warm-muted); opacity:0.6;" aria-hidden="true"></div>
+          <div class="absolute -right-20 bottom-6 w-72 h-36 rounded-lg transform -rotate-6" style="background-color:var(--accent-secondary-muted); opacity:0.7;" aria-hidden="true"></div>
+
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight relative z-20">Make pixel art that pops, layer by layer</h1>
+          <p class="mt-4 text-slate-600 max-w-2xl relative z-10">Pixel Art Studio is a lightweight, beautiful editor for sprites and icons. Work with multiple layers, a live palette, and export crisp PNGs — designed for speed and delight.</p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-3 relative z-10">
+            <a href="app.html" class="btn-primary px-5 py-3" aria-label="Open the pixel editor">Try the Editor</a>
+            <a href="#features" class="btn-secondary" aria-label="See features">Learn more</a>
+            <span class="chip">No account required</span>
+          </div>
+
+          <div class="mt-8 relative z-10" aria-hidden="true">
+            <!-- small preview tiles to suggest activity -->
+            <div class="flex items-center gap-3">
+              <div class="w-28 h-28 bg-slate-100 rounded-md p-2 flex items-center justify-center">
+                <div class="grid grid-cols-6 gap-0" style="width:96px;height:96px;"> 
+                  <!-- decorative sprite - pure CSS blocks -->
+                  <!-- 6x6 blocks -->
+                  <div class="w-4 h-4 bg-amber-400 rounded-sm"></div>
+                  <div class="w-4 h-4 bg-amber-400 rounded-sm"></div>
+                  <div class="w-4 h-4 bg-amber-400 rounded-sm"></div>
+                  <div class="w-4 h-4 bg-amber-200 rounded-sm"></div>
+                  <div class="w-4 h-4 bg-amber-200 rounded-sm"></div>
+                  <div class="w-4 h-4 bg-amber-200 rounded-sm"></div>
+                </div>
+              </div>
+              <div class="text-sm text-slate-500">Polished controls, fast painting, and layered export make creating sprites fun and reliable.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="md:w-1/4 lg:w-1/5 flex-none">
+        <div class="sticky top-24 rounded-xl p-4 shadow-md" style="background-color:var(--accent-secondary-muted);">
+          <h3 class="text-sm font-semibold" style="color:var(--accent-primary-dark)">Why Pixel Art Studio</h3>
+          <ul class="mt-3 text-sm space-y-2" style="color:var(--accent-primary)">
+            <li class="flex items-start gap-2"><strong style="color:var(--accent-warm-dark)">•</strong> Layers with opacity</li>
+            <li class="flex items-start gap-2"><strong class="text-amber-600">•</strong> Export crisp PNGs</li>
+            <li class="flex items-start gap-2"><strong class="text-amber-600">•</strong> Preserves work in your browser</li>
+          </ul>
+          <div class="mt-4">
+            <a href="app.html" class="btn-primary w-full">Launch Editor</a>
+          </div>
+        </div>
+
+        <div class="mt-6 text-xs text-slate-500">Built for creators who value a focused, fast workflow. Works offline in your browser.</div>
+      </aside>
+    </section>
+
+    <!-- Features (magazine-style asymmetric blocks) -->
+    <section id="features" class="mt-14 grid gap-8">
+      <div class="rounded-xl bg-white p-6 shadow-sm">
+        <div class="flex items-start gap-6">
+          <div class="flex-none w-14 h-14 rounded-lg bg-amber-100 grid place-items-center text-amber-700 font-bold">L</div>
+          <div>
+            <h4 class="font-semibold">Layered workflow</h4>
+            <p class="text-sm text-slate-600 mt-1">Organize your sprite into layers. Toggle visibility, rename, and reorder. Each layer is independently exportable and combined at export time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:flex md:items-start md:gap-8">
+        <div class="md:flex-1 rounded-xl bg-white p-6 shadow-sm">
+          <h4 class="font-semibold">Vibrant palettes</h4>
+          <p class="text-sm text-slate-600 mt-2">A curated default palette and custom color picker let you craft consistent pixel art. Save custom colors for the session. The palette updates live with your project.</p>
+        </div>
+        <div class="md:w-1/3 mt-4 md:mt-0 rounded-xl bg-white p-6 shadow-sm">
+          <h4 class="font-semibold">PNG export</h4>
+          <p class="text-sm text-slate-600 mt-2">Export layered artwork to a crisp PNG. Choose pixel scale for crisp nearest-neighbor upscaling suitable for game sprites and icons.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-100 mt-12 py-8">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-sm text-slate-600">Made with care. <a href="https://teda.dev" style="color:var(--accent-primary)" class="underline">Teda.dev</a> helped build this demo.</div>
+      <div class="text-sm text-slate-500">© <span id="year"></span> Pixel Art Studio</div>
+    </div>
+  </footer>
+
+  <script>
+    // small DOM-only script safe to include here for footer year; not manipulating app state
+    (function(){
+      document.getElementById('year').textContent = new Date().getFullYear();
+    }());
+  </script>
+  <script src="scripts/helpers.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
